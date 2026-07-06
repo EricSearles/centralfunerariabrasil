@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { contact } from "@/data/contact";
 import { navigationItems } from "@/data/navigation";
 
+import { BrandLogo } from "./BrandLogo";
 import { Button } from "./Button";
 import { Container } from "./Container";
 import { MobileMenu } from "./MobileMenu";
@@ -30,10 +31,8 @@ export function Header() {
         className={`fixed inset-x-0 top-0 z-40 border-b border-brand-100 transition duration-300 ${headerClass}`}
       >
         <Container>
-          <div className="flex min-h-[74px] items-center justify-between gap-6">
-            <Link className="font-display text-[1.9rem] leading-none text-brand-800" href="/">
-              Central Funerária Brasil
-            </Link>
+          <div className="flex min-h-[88px] items-center justify-between gap-6 sm:min-h-[96px]">
+            <BrandLogo priority />
 
             <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
               {navigationItems.map((item) => (

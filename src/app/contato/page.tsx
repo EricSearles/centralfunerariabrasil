@@ -32,23 +32,23 @@ export default function ContatoPage() {
       <section className="py-24">
         <Container>
           <SectionTitle
-            description="Escolha o canal mais adequado ou envie as informações principais para iniciarmos a conversa pelo WhatsApp."
+            description="Escolha o canal mais adequado ou envie as informações principais para que nossa equipe retorne com a orientação inicial."
             eyebrow="Fale com nossa equipe"
             title="Canais de atendimento"
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             <InfoCard
-              description={contact.phone}
+              description={`Fixo e WhatsApp: ${contact.fixedPhone}`}
               icon={PhoneCall}
-              title="Telefone e WhatsApp"
+              title="Telefone fixo"
+            />
+            <InfoCard
+              description={`Celular e WhatsApp: ${contact.mobilePhone}`}
+              icon={MessageCircle}
+              title="Celular"
             />
             <InfoCard description={contact.email} icon={Mail} title="E-mail" />
             <InfoCard description={contact.attendance} icon={Clock3} title="Atendimento" />
-            <InfoCard
-              description="centralfunerariabrasil.com.br"
-              icon={Globe2}
-              title="Site"
-            />
           </div>
         </Container>
       </section>
@@ -62,19 +62,45 @@ export default function ContatoPage() {
                 <div className="flex items-start gap-3">
                   <MapPinned className="mt-1 h-5 w-5 text-brand-400" />
                   <div>
-                    <h3 className="font-display text-3xl text-brand-700">Cobertura nacional</h3>
+                    <h3 className="font-display text-3xl text-brand-700">Endereço de atendimento</h3>
+                    <p className="mt-3 text-sm leading-7 text-text-muted">
+                      {contact.addressLine1}
+                      <br />
+                      CEP: {contact.addressZip}
+                      <br />
+                      {contact.addressLine2}
+                    </p>
                     <p className="mt-3 text-sm leading-7 text-text-muted">
                       Atendimento sujeito à disponibilidade operacional e à logística da região. O encaminhamento é feito conforme a necessidade informada pela família.
                     </p>
                   </div>
                 </div>
               </div>
-              <ImagePlaceholder imagePath="/images/funeraria-imagem-5.png" label="Atendimento e acolhimento" compact />
+              <div className="rounded-[1.75rem] border border-brand-100 bg-white p-6 shadow-card">
+                <div className="flex items-start gap-3">
+                  <Globe2 className="mt-1 h-5 w-5 text-brand-400" />
+                  <div>
+                    <h3 className="font-display text-3xl text-brand-700">Contato direto</h3>
+                    <p className="mt-3 text-sm leading-7 text-text-muted">
+                      Telefone fixo e WhatsApp: {contact.fixedPhone}
+                      <br />
+                      Celular e WhatsApp: {contact.mobilePhone}
+                      <br />
+                      Site: centralfunerariabrasil.com.br
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <ImagePlaceholder
+                compact
+                imagePath="/images/funeraria-imagem-5.png"
+                label="Atendimento e acolhimento"
+              />
               <div className="rounded-[1.75rem] border border-brand-100 bg-white p-6 shadow-card">
                 <div className="flex items-start gap-3">
                   <MessageCircle className="mt-1 h-5 w-5 text-support-whatsapp" />
                   <p className="text-sm leading-7 text-text-muted">
-                    O formulário não envia dados para um servidor. Ao concluir, ele abre o WhatsApp com a mensagem já preenchida para acelerar o atendimento.
+                    Se preferir, você também pode falar com nossa equipe diretamente pelo WhatsApp para receber orientação imediata.
                   </p>
                 </div>
               </div>

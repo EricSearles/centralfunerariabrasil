@@ -6,6 +6,7 @@ const pages = [
   "",
   "/sobre",
   "/servicos",
+  "/urnas-funerarias",
   "/traslado-funerario",
   "/transporte-aereo-funerario",
   "/planos-funerarios",

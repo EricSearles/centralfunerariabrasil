@@ -24,7 +24,7 @@ export default function TransporteAereoFunerarioPage() {
           { label: "Transporte Aéreo Funerário" },
         ]}
         description="A Central Funerária Brasil oferece suporte para transporte aéreo funerário, coordenando soluções para deslocamentos nacionais e internacionais com orientação documental e logística especializada."
-        imagePath="/images/funeraria-background-image-1.png"
+        imagePath="/images/transportes/transporte-aereo-funerario-interior.jpeg"
         title="Transporte aéreo funerário"
       />
 

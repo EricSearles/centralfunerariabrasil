@@ -3,6 +3,7 @@ import Link from "next/link";
 import { contact } from "@/data/contact";
 import { footerQuickLinks, footerServiceLinks } from "@/data/navigation";
 
+import { BrandLogo } from "./BrandLogo";
 import { Container } from "./Container";
 
 export function Footer() {
@@ -11,7 +12,7 @@ export function Footer() {
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
           <div>
-            <h2 className="font-display text-3xl">Central Funerária Brasil</h2>
+            <BrandLogo size="footer" />
             <p className="mt-4 max-w-md text-sm leading-7 text-white/72">
               Atendimento funerário humanizado com suporte imediato, orientação clara e
               organização responsável para famílias em todo o Brasil.
@@ -50,15 +51,20 @@ export function Footer() {
               Contato
             </h3>
             <ul className="mt-4 space-y-3 text-sm text-white/75">
-              <li>WhatsApp: {contact.phone}</li>
+              <li>Fixo e WhatsApp: {contact.fixedPhone}</li>
+              <li>Celular e WhatsApp: {contact.mobilePhone}</li>
               <li>E-mail: {contact.email}</li>
+              <li>Endereço: {contact.addressLine1}</li>
+              <li>CEP: {contact.addressZip}</li>
+              <li>{contact.addressLine2}</li>
               <li>Atendimento: {contact.attendance}</li>
               <li>Site: centralfunerariabrasil.com.br</li>
             </ul>
           </div>
         </div>
         <div className="mt-12 border-t border-white/10 pt-8 text-sm text-white/55">
-          Atendimento sujeito à disponibilidade operacional, região de cobertura, documentação necessária e confirmação do serviço.
+          Atendimento sujeito à disponibilidade operacional, região de cobertura, documentação
+          necessária e confirmação do serviço.
         </div>
       </Container>
     </footer>

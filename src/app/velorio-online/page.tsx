@@ -10,14 +10,14 @@ import { SectionTitle } from "@/components/SectionTitle";
 export const metadata: Metadata = {
   title: "Velório Online | Central Funerária Brasil",
   description:
-    "Apresentação institucional do serviço de velório online com transmissão privada, homenagens e compartilhamento restrito sob solicitação.",
+    "Conheça a possibilidade de velório online com transmissão privada, homenagens e compartilhamento restrito para familiares e amigos.",
 };
 
 const items = [
   {
     icon: Video,
     title: "Transmissão privada",
-    description: "Possibilidade de transmissão online em ambiente restrito e organizado sob solicitação.",
+    description: "Possibilidade de transmissão online em ambiente restrito e organizado para a família.",
   },
   {
     icon: Heart,
@@ -31,8 +31,8 @@ const items = [
   },
   {
     icon: Monitor,
-    title: "Solicitação sob demanda",
-    description: "A ativação depende de alinhamento operacional, disponibilidade e definição prévia com a família.",
+    title: "Atendimento sob consulta",
+    description: "A equipe orienta sobre formato, disponibilidade e alinhamentos necessários para cada família.",
   },
 ];
 
@@ -44,7 +44,7 @@ export default function VelorioOnlinePage() {
           { label: "Início", href: "/" },
           { label: "Velório Online" },
         ]}
-        description="Apresentamos a possibilidade de velório online com transmissão privada, homenagens e compartilhamento restrito para familiares e amigos que não puderem estar presentes."
+        description="Conheça a possibilidade de velório online com transmissão privada, homenagens e compartilhamento restrito para familiares e amigos que não puderem estar presentes."
         imagePath="/images/funeraria-imagem-1.png"
         title="Velório online"
       />
@@ -52,9 +52,9 @@ export default function VelorioOnlinePage() {
       <section className="py-24">
         <Container>
           <SectionTitle
-            description="Nesta primeira versão, não existe sistema real de velório online. A página apresenta o serviço e direciona o interesse para atendimento via WhatsApp."
+            description="O atendimento é conduzido com orientação da equipe, respeitando a necessidade da família e o formato mais adequado para a despedida."
             eyebrow="Como funciona"
-            title="Serviço apresentado sob solicitação"
+            title="Transmissão, homenagens e acompanhamento"
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {items.map((item) => (

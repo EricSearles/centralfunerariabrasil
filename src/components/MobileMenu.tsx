@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { contact } from "@/data/contact";
 import { navigationItems } from "@/data/navigation";
 
+import { BrandLogo } from "./BrandLogo";
 import { Button } from "./Button";
 
 type MobileMenuProps = {
@@ -22,7 +23,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
     <div className="fixed inset-0 z-50 bg-brand-900/15 backdrop-blur-sm lg:hidden">
       <div className="ml-auto flex h-full w-full max-w-sm flex-col border-l border-brand-100 bg-brand-50 px-6 py-6 text-brand-700 shadow-soft">
         <div className="flex items-center justify-between">
-          <p className="font-display text-2xl">Central Funerária Brasil</p>
+          <BrandLogo size="mobile" />
           <button
             aria-label="Fechar menu"
             className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-brand-100 bg-white"
@@ -48,7 +49,13 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           <Button external href={contact.whatsappUrlWithMessage} size="sm" variant="whatsapp">
             WhatsApp 24h
           </Button>
-          <p className="text-sm text-text-muted">Atendimento imediato: {contact.phone}</p>
+          <p className="text-sm leading-7 text-text-muted">
+            Atendimento imediato:
+            <br />
+            Fixo: {contact.fixedPhone}
+            <br />
+            Celular: {contact.mobilePhone}
+          </p>
         </div>
       </div>
     </div>

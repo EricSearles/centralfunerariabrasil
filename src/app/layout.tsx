@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { HeaderClient } from "@/components/HeaderClient";
 import { WhatsAppFloatingButton } from "@/components/WhatsAppFloatingButton";
 import { contact } from "@/data/contact";
 
@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
-        <Header />
+        <HeaderClient />
         <main>{children}</main>
         <Footer />
         <WhatsAppFloatingButton />
