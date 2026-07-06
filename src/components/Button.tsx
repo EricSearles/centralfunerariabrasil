@@ -41,12 +41,14 @@ export function Button({
     "inline-flex items-center justify-center font-semibold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
 
   if (external) {
+    const opensNewTab = !href.startsWith("tel:") && !href.startsWith("mailto:");
+
     return (
       <a
         className={`${baseClassName} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
         href={href}
-        rel="noreferrer"
-        target="_blank"
+        rel={opensNewTab ? "noreferrer" : undefined}
+        target={opensNewTab ? "_blank" : undefined}
       >
         {children}
       </a>

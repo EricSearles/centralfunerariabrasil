@@ -24,7 +24,7 @@ export default function TrasladoFunerarioPage() {
           { label: "Traslado Funerário" },
         ]}
         description="Realizamos a coordenação de traslado funerário com suporte para deslocamentos municipais, interestaduais e internacionais, oferecendo orientação sobre documentação, logística e etapas necessárias."
-        imagePath="/images/funeraria-imagem-3.png"
+        imagePath="/images/transportes/transporte-aereo-funerario-exterior.jpeg"
         title="Traslado funerário"
       />
 

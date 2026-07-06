@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Briefcase, HeartHandshake, ShieldCheck, UsersRound, Wallet } from "lucide-react";
+import { HeartHandshake, ShieldCheck, UsersRound, Wallet } from "lucide-react";
 
 import { BenefitCard } from "@/components/BenefitCard";
 import { CTASection } from "@/components/CTASection";
@@ -93,14 +93,6 @@ export default function PlanosFunerariosPage() {
                 title={benefit.title}
               />
             ))}
-          </div>
-          <div className="mt-10 rounded-[1.5rem] border border-brand-100 bg-brand-50/55 p-6">
-            <div className="flex items-center gap-3 text-brand-700">
-              <Briefcase className="h-5 w-5 text-brand-400" />
-              <p className="text-sm leading-7 text-text-muted">
-                Nesta primeira versão, a página apresenta o serviço de forma institucional e direciona a solicitação de orçamento para o WhatsApp.
-              </p>
-            </div>
           </div>
         </Container>
       </section>

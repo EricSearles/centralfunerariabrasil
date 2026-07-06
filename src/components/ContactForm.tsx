@@ -32,9 +32,9 @@ const initialState: FormState = {
 };
 
 export function ContactForm({
-  title = "Solicitar atendimento pelo WhatsApp",
-  description = "Preencha os dados essenciais e nós abriremos uma conversa com a mensagem organizada para agilizar o atendimento.",
-  buttonLabel = "Abrir WhatsApp",
+  title = "Solicitar orientação",
+  description = "Preencha os dados essenciais para que nossa equipe possa analisar a necessidade da família e retornar com acolhimento e agilidade.",
+  buttonLabel = "Enviar solicitação",
   defaultType = "",
   compact = false,
 }: ContactFormProps) {
@@ -43,8 +43,23 @@ export function ContactForm({
     serviceType: defaultType,
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(
+    null,
+  );
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const whatsappLink = createWhatsAppLink(
+    createLeadMessage({
+      name: form.name || "Não informado",
+      whatsapp: form.whatsapp || "Não informado",
+      city: form.city || "Não informado",
+      state: form.state || "-",
+      serviceType: form.serviceType || "Não informado",
+      notes: form.notes || "-",
+    }),
+  );
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const nextErrors: Partial<Record<keyof FormState, string>> = {};
@@ -55,23 +70,49 @@ export function ContactForm({
     if (!form.serviceType.trim()) nextErrors.serviceType = "Selecione o tipo de atendimento.";
 
     setErrors(nextErrors);
+    setFeedback(null);
 
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
 
-    const link = createWhatsAppLink(
-      createLeadMessage({
-        name: form.name,
-        whatsapp: form.whatsapp,
-        city: form.city,
-        state: form.state,
-        serviceType: form.serviceType,
-        notes: form.notes,
-      }),
-    );
+    setIsSubmitting(true);
 
-    window.open(link, "_blank", "noopener,noreferrer");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const result = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message || "Não foi possível enviar a solicitação.");
+      }
+
+      setFeedback({
+        type: "success",
+        message: result.message || "Solicitação enviada com sucesso.",
+      });
+      setForm({
+        ...initialState,
+        serviceType: defaultType,
+      });
+      setErrors({});
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Não foi possível enviar a solicitação no momento.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClassName =
@@ -107,7 +148,7 @@ export function ContactForm({
             onChange={(event) =>
               setForm((current) => ({ ...current, whatsapp: event.target.value }))
             }
-            placeholder="(11) 93000-0000"
+            placeholder="(11) 95850-0080"
             value={form.whatsapp}
           />
           {errors.whatsapp ? <p className="mt-2 text-sm text-red-600">{errors.whatsapp}</p> : null}
@@ -172,14 +213,34 @@ export function ContactForm({
             value={form.notes}
           />
         </div>
-        <div className="sm:col-span-2">
+        <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row">
           <button
-            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-support-whatsapp px-6 py-3 text-sm font-semibold tracking-[0.04em] text-white transition hover:brightness-95"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand-700 px-6 py-3 text-sm font-semibold tracking-[0.04em] text-white transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
+            disabled={isSubmitting}
             type="submit"
           >
-            {buttonLabel}
+            {isSubmitting ? "Enviando..." : buttonLabel}
           </button>
+          <a
+            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-support-whatsapp/25 bg-support-whatsapp/10 px-6 py-3 text-sm font-semibold tracking-[0.04em] text-support-whatsapp transition hover:bg-support-whatsapp/15"
+            href={whatsappLink}
+            rel="noreferrer"
+            target="_blank"
+          >
+            Falar pelo WhatsApp
+          </a>
         </div>
+        {feedback ? (
+          <div className="sm:col-span-2">
+            <p
+              className={`text-sm leading-7 ${
+                feedback.type === "success" ? "text-brand-700" : "text-red-600"
+              }`}
+            >
+              {feedback.message}
+            </p>
+          </div>
+        ) : null}
       </form>
     </div>
   );

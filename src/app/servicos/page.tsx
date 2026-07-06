@@ -55,7 +55,10 @@ export default function ServicosPage() {
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service) => (
-              <div id={service.href.split("#")[1]} key={service.title}>
+              <div
+                id={service.href.includes("#") ? service.href.split("#")[1] : undefined}
+                key={service.title}
+              >
                 <ServiceCard service={service} />
               </div>
             ))}

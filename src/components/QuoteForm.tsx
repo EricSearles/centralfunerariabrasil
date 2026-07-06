@@ -7,9 +7,9 @@ type QuoteFormProps = {
 export function QuoteForm({ defaultType = "Planos funerários" }: QuoteFormProps) {
   return (
     <ContactForm
-      buttonLabel="Solicitar orientação pelo WhatsApp"
+      buttonLabel="Solicitar orientação"
       defaultType={defaultType}
-      description="Envie os dados principais para que possamos iniciar uma conversa organizada, com mais clareza e acolhimento."
+      description="Envie os dados principais para que nossa equipe retorne com orientação organizada, clara e acolhedora."
       title="Receber orientação personalizada"
     />
   );
