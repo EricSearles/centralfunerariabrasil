@@ -1,15 +1,15 @@
 export const contact = {
   companyName: "Central Funerária Brasil",
   siteUrl: "https://centralfunerariabrasil.com.br",
-  phone: "(11) 95850-0080",
-  phoneRaw: "5511958500080",
-  fixedPhone: "(11) 4171-0100",
-  fixedPhoneRaw: "551141710100",
-  mobilePhone: "(11) 95850-0080",
-  mobilePhoneRaw: "5511958500080",
-  whatsappUrl: "https://wa.me/5511958500080",
+  phone: "(11) 4172-0100",
+  phoneRaw: "551141720100",
+  fixedPhone: "(11) 4172-0100",
+  fixedPhoneRaw: "551141720100",
+  mobilePhone: "(11) 4172-0100",
+  mobilePhoneRaw: "551141720100",
+  whatsappUrl: "https://wa.me/551141720100",
   whatsappUrlWithMessage:
-    "https://wa.me/5511958500080?text=Ol%C3%A1%2C%20preciso%20de%20atendimento%20funer%C3%A1rio.%20Gostaria%20de%20falar%20com%20a%20Central%20Funer%C3%A1ria%20Brasil.",
+    "https://wa.me/551141720100?text=Ol%C3%A1%2C%20preciso%20de%20atendimento%20funer%C3%A1rio.%20Gostaria%20de%20falar%20com%20a%20Central%20Funer%C3%A1ria%20Brasil.",
   whatsappDefaultMessage:
     "Olá, preciso de atendimento funerário. Gostaria de falar com a Central Funerária Brasil.",
   email: "contato@centralfunerariabrasil.com.br",

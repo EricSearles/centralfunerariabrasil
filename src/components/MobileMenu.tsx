@@ -52,9 +52,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           <p className="text-sm leading-7 text-text-muted">
             Atendimento imediato:
             <br />
-            Fixo: {contact.fixedPhone}
-            <br />
-            Celular: {contact.mobilePhone}
+            Telefone e WhatsApp: {contact.phone}
           </p>
         </div>
       </div>

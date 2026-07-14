@@ -148,7 +148,7 @@ export function ContactForm({
             onChange={(event) =>
               setForm((current) => ({ ...current, whatsapp: event.target.value }))
             }
-            placeholder="(11) 95850-0080"
+            placeholder="(11) 4172-0100"
             value={form.whatsapp}
           />
           {errors.whatsapp ? <p className="mt-2 text-sm text-red-600">{errors.whatsapp}</p> : null}

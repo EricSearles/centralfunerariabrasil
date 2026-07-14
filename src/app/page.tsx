@@ -24,7 +24,7 @@ const featuredBlocks = [
       "Organização e suporte para traslado terrestre, interestadual e internacional, com orientação documental e atendimento 24 horas.",
     href: "/traslado-funerario",
     label: "Solicitar traslado",
-    imagePath: "/images/transportes/transporte-aereo-funerario-exterior.jpeg",
+    imagePath: "/images/transportes/transporte-aereo-funerario-exterior-1.jpeg",
   },
   {
     title: "Transporte aéreo funerário",
