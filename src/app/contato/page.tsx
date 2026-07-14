@@ -38,14 +38,14 @@ export default function ContatoPage() {
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             <InfoCard
-              description={`Fixo e WhatsApp: ${contact.fixedPhone}`}
+              description={`Telefone e WhatsApp: ${contact.phone}`}
               icon={PhoneCall}
-              title="Telefone fixo"
+              title="Telefone"
             />
             <InfoCard
-              description={`Celular e WhatsApp: ${contact.mobilePhone}`}
+              description="Atendimento direto pelo mesmo número."
               icon={MessageCircle}
-              title="Celular"
+              title="WhatsApp"
             />
             <InfoCard description={contact.email} icon={Mail} title="E-mail" />
             <InfoCard description={contact.attendance} icon={Clock3} title="Atendimento" />
@@ -82,9 +82,7 @@ export default function ContatoPage() {
                   <div>
                     <h3 className="font-display text-3xl text-brand-700">Contato direto</h3>
                     <p className="mt-3 text-sm leading-7 text-text-muted">
-                      Telefone fixo e WhatsApp: {contact.fixedPhone}
-                      <br />
-                      Celular e WhatsApp: {contact.mobilePhone}
+                      Telefone e WhatsApp: {contact.phone}
                       <br />
                       Site: centralfunerariabrasil.com.br
                     </p>

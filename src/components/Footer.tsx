@@ -51,8 +51,7 @@ export function Footer() {
               Contato
             </h3>
             <ul className="mt-4 space-y-3 text-sm text-white/75">
-              <li>Fixo e WhatsApp: {contact.fixedPhone}</li>
-              <li>Celular e WhatsApp: {contact.mobilePhone}</li>
+              <li>Telefone e WhatsApp: {contact.phone}</li>
               <li>E-mail: {contact.email}</li>
               <li>Endereço: {contact.addressLine1}</li>
               <li>CEP: {contact.addressZip}</li>

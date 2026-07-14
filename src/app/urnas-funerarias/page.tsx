@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, MessageCircle, PhoneCall } from "lucide-react";
+import { CheckCircle2, PhoneCall } from "lucide-react";
 
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Button } from "@/components/Button";
@@ -423,11 +423,7 @@ export default function UrnasFunerariasPage() {
               <div className="space-y-4 rounded-[1.5rem] border border-white/10 bg-white/10 p-6">
                 <div className="flex items-center gap-3 text-white/80">
                   <PhoneCall className="h-5 w-5 text-brand-400" />
-                  <span>{contact.mobilePhone}</span>
-                </div>
-                <div className="flex items-center gap-3 text-white/80">
-                  <MessageCircle className="h-5 w-5 text-brand-400" />
-                  <span>Fixo e WhatsApp: {contact.fixedPhone}</span>
+                  <span>Telefone e WhatsApp: {contact.phone}</span>
                 </div>
                 <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                   <Button external href={contact.whatsappUrlWithMessage} variant="whatsapp">
