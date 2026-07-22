@@ -53,9 +53,6 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-white/75">
               <li>Telefone e WhatsApp: {contact.phone}</li>
               <li>E-mail: {contact.email}</li>
-              <li>Endereço: {contact.addressLine1}</li>
-              <li>CEP: {contact.addressZip}</li>
-              <li>{contact.addressLine2}</li>
               <li>Atendimento: {contact.attendance}</li>
               <li>Site: centralfunerariabrasil.com.br</li>
             </ul>

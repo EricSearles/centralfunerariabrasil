@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock3, Globe2, Mail, MapPinned, MessageCircle, PhoneCall } from "lucide-react";
+import { Clock3, Globe2, Mail, MessageCircle, PhoneCall } from "lucide-react";
 
 import { CTASection } from "@/components/CTASection";
 import { ContactForm } from "@/components/ContactForm";
@@ -60,15 +60,12 @@ export default function ContatoPage() {
             <div className="space-y-6">
               <div className="rounded-[1.75rem] border border-brand-100 bg-brand-50/55 p-6">
                 <div className="flex items-start gap-3">
-                  <MapPinned className="mt-1 h-5 w-5 text-brand-400" />
+                  <Clock3 className="mt-1 h-5 w-5 text-brand-400" />
                   <div>
-                    <h3 className="font-display text-3xl text-brand-700">Endereço de atendimento</h3>
+                    <h3 className="font-display text-3xl text-brand-700">Atendimento imediato</h3>
                     <p className="mt-3 text-sm leading-7 text-text-muted">
-                      {contact.addressLine1}
-                      <br />
-                      CEP: {contact.addressZip}
-                      <br />
-                      {contact.addressLine2}
+                      Nossa equipe orienta a família com agilidade e organiza o atendimento de
+                      acordo com a necessidade informada, com suporte 24 horas.
                     </p>
                     <p className="mt-3 text-sm leading-7 text-text-muted">
                       Atendimento sujeito à disponibilidade operacional e à logística da região. O encaminhamento é feito conforme a necessidade informada pela família.
