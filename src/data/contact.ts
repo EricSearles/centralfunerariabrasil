@@ -16,10 +16,6 @@ export const contact = {
   attendance: "24 horas",
   seoDescription:
     "Atendimento funerário 24 horas com suporte humanizado, traslado funerário, transporte aéreo funerário, planos funerários e assistência familiar em todo o Brasil.",
-  addressLine1: "Rua Tamuatá, 155",
-  addressZip: "04255-040",
-  addressLine2: "Bairro São João - SP",
-  addressLabel: "Rua Tamuatá, 155, CEP 04255-040, Bairro São João - SP",
 };
 
 export const attendanceOptions = [
