@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { CheckCircle2, Clock3, MessageCircle, Route } from "lucide-react";
+﻿import type { Metadata } from "next";
+import { CheckCircle2, Clock3, Mail, Route } from "lucide-react";
 
 import { CTASection } from "@/components/CTASection";
 import { Container } from "@/components/Container";
@@ -7,6 +7,7 @@ import { InternalHero } from "@/components/InternalHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ServiceCard } from "@/components/ServiceCard";
+import { contact } from "@/data/contact";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -92,13 +93,13 @@ export default function ServicosPage() {
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
               <SectionTitle
-                description="Se você já sabe o tipo de atendimento desejado, podemos receber as informações principais e iniciar a conversa pelo WhatsApp."
+                description="Se você já sabe o tipo de atendimento desejado, pode enviar os dados principais para que nossa equipe receba a solicitação de cotação por e-mail."
                 eyebrow="Solicitação rápida"
-                title="Peça orientação da nossa equipe"
+                title="Solicite uma cotação da nossa equipe"
               />
               <div className="mt-6 flex items-center gap-3 rounded-xl border border-brand-100 bg-white px-5 py-4 text-sm text-text-muted shadow-card">
-                <MessageCircle className="h-5 w-5 text-support-whatsapp" />
-                Atendimento 24 horas com direcionamento conforme a necessidade da família.
+                <Mail className="h-5 w-5 text-brand-400" />
+                Solicitações de cotação e atendimento são encaminhadas para {contact.email}.
               </div>
             </div>
             <QuoteForm defaultType="Atendimento funerário 24h" />
@@ -108,6 +109,9 @@ export default function ServicosPage() {
 
       <CTASection
         description="Nossa equipe está pronta para orientar sobre remoção, cremação, sepultamento, documentação e cerimônia."
+        secondaryExternal
+        secondaryHref={`mailto:${contact.email}`}
+        secondaryLabel="Enviar e-mail"
         title="Precisa de ajuda para organizar o atendimento?"
       />
     </>

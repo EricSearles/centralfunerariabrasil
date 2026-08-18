@@ -1,5 +1,6 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { contact } from "@/data/contact";
 
@@ -14,6 +15,7 @@ type HeroProps = {
   imagePath: string;
   backgroundImagePath?: string;
   hideSideImage?: boolean;
+  sideContent?: ReactNode;
 };
 
 export function Hero({
@@ -23,7 +25,10 @@ export function Hero({
   imagePath,
   backgroundImagePath,
   hideSideImage = false,
+  sideContent,
 }: HeroProps) {
+  const hasAside = Boolean(sideContent);
+
   return (
     <section className="relative overflow-hidden pb-20 pt-32 sm:pb-24 lg:pb-28">
       {backgroundImagePath ? (
@@ -47,8 +52,12 @@ export function Hero({
 
       <Container className="relative">
         <div
-          className={`grid gap-12 lg:items-center ${
-            hideSideImage ? "lg:grid-cols-[minmax(0,0.95fr)]" : "lg:grid-cols-[1fr_0.92fr] lg:gap-16"
+          className={`grid gap-12 ${
+            hasAside
+              ? "lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-start lg:gap-12"
+              : hideSideImage
+                ? "lg:grid-cols-[minmax(0,0.95fr)] lg:items-center"
+                : "lg:grid-cols-[1fr_0.92fr] lg:items-center lg:gap-16"
           }`}
         >
           <div className="animate-reveal rounded-[2rem] bg-[rgba(248,246,241,0.34)] p-4 backdrop-blur-[2px] sm:p-6 lg:p-8">
@@ -80,7 +89,9 @@ export function Hero({
             </ul>
           </div>
 
-          {!hideSideImage ? (
+          {hasAside ? <div className="lg:pt-3">{sideContent}</div> : null}
+
+          {!hasAside && !hideSideImage ? (
             <div>
               <ImagePlaceholder
                 imagePath={imagePath}

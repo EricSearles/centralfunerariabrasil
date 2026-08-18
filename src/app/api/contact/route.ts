@@ -1,6 +1,7 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 import { contact } from "@/data/contact";
+import { createContactEmailBody } from "@/lib/contact";
 import { sendSmtpMail } from "@/lib/smtp";
 
 export const runtime = "nodejs";
@@ -8,7 +9,8 @@ export const runtime = "nodejs";
 type ContactPayload = {
   name: string;
   whatsapp: string;
-  city: string;
+  email?: string;
+  city?: string;
   state?: string;
   serviceType: string;
   notes?: string;
@@ -51,13 +53,13 @@ export async function POST(request: Request) {
       {
         from: smtpFrom,
         to: recipient,
-        subject: `Novo contato - ${payload.serviceType}`,
+        subject: `Nova solicitação pelo site - ${payload.serviceType}`,
         text: buildEmailBody(payload as ContactPayload),
       },
     );
 
     return NextResponse.json({
-      message: "Recebemos sua mensagem. Nossa equipe retornará em breve.",
+      message: "Recebemos sua solicitação e encaminhamos para nossa equipe por e-mail.",
     });
   } catch (error) {
     console.error("Erro ao enviar contato:", error);
@@ -72,7 +74,6 @@ export async function POST(request: Request) {
 function validatePayload(payload: Partial<ContactPayload>) {
   if (!payload.name?.trim()) return "Informe seu nome.";
   if (!payload.whatsapp?.trim()) return "Informe seu WhatsApp.";
-  if (!payload.city?.trim()) return "Informe sua cidade.";
   if (!payload.serviceType?.trim()) return "Selecione o tipo de atendimento.";
 
   return null;
@@ -87,14 +88,13 @@ function parseBoolean(value: string | undefined, fallback: boolean) {
 }
 
 function buildEmailBody(payload: ContactPayload) {
-  return [
-    "Novo contato recebido pelo site Central Funerária Brasil.",
-    "",
-    `Nome: ${payload.name}`,
-    `WhatsApp: ${payload.whatsapp}`,
-    `Cidade: ${payload.city}`,
-    `Estado: ${payload.state?.trim() || "-"}`,
-    `Tipo de atendimento: ${payload.serviceType}`,
-    `Observações: ${payload.notes?.trim() || "-"}`,
-  ].join("\n");
+  return createContactEmailBody({
+    name: payload.name,
+    whatsapp: payload.whatsapp,
+    email: payload.email?.trim() || "-",
+    city: payload.city?.trim() || "-",
+    state: payload.state?.trim() || "-",
+    serviceType: payload.serviceType,
+    notes: payload.notes?.trim() || "-",
+  });
 }

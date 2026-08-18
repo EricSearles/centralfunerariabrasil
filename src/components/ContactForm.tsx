@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useState } from "react";
 
 import { attendanceOptions } from "@/data/contact";
+import { createContactEmailBody, createContactMailtoLink } from "@/lib/contact";
 import { createLeadMessage, createWhatsAppLink } from "@/lib/whatsapp";
 
 type ContactFormProps = {
@@ -11,6 +12,7 @@ type ContactFormProps = {
   buttonLabel?: string;
   defaultType?: string;
   compact?: boolean;
+  secondaryAction?: "email" | "whatsapp";
 };
 
 type FormState = {
@@ -32,11 +34,13 @@ const initialState: FormState = {
 };
 
 export function ContactForm({
-  title = "Solicitar orientação",
-  description = "Preencha os dados essenciais para que nossa equipe possa analisar a necessidade da família e retornar com acolhimento e agilidade.",
+  title = "Enviar contato por e-mail",
+  description =
+    "Preencha os dados essenciais para que nossa equipe receba sua solicitação por e-mail e retorne com acolhimento e agilidade.",
   buttonLabel = "Enviar solicitação",
   defaultType = "",
   compact = false,
+  secondaryAction = "email",
 }: ContactFormProps) {
   const [form, setForm] = useState<FormState>({
     ...initialState,
@@ -48,15 +52,21 @@ export function ContactForm({
     null,
   );
 
-  const whatsappLink = createWhatsAppLink(
-    createLeadMessage({
-      name: form.name || "Não informado",
-      whatsapp: form.whatsapp || "Não informado",
-      city: form.city || "Não informado",
-      state: form.state || "-",
-      serviceType: form.serviceType || "Não informado",
-      notes: form.notes || "-",
-    }),
+  const leadInput = {
+    name: form.name || "Não informado",
+    whatsapp: form.whatsapp || "Não informado",
+    city: form.city || "Não informado",
+    state: form.state || "-",
+    serviceType: form.serviceType || "Não informado",
+    notes: form.notes || "-",
+  };
+
+  const whatsappLink = createWhatsAppLink(createLeadMessage(leadInput));
+  const emailLink = createContactMailtoLink(
+    form.serviceType.trim()
+      ? `Contato pelo site - ${form.serviceType}`
+      : "Contato pelo site - Central Funerária Brasil",
+    createContactEmailBody(leadInput),
   );
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -117,6 +127,20 @@ export function ContactForm({
 
   const inputClassName =
     "w-full rounded-xl border border-brand-100 bg-brand-50/45 px-4 py-3 text-sm text-brand-700 outline-none transition placeholder:text-text-muted/70 focus:border-brand-400 focus:bg-white";
+
+  const secondaryButton =
+    secondaryAction === "whatsapp"
+      ? {
+          href: whatsappLink,
+          label: "Falar pelo WhatsApp",
+          className:
+            "border-support-whatsapp/25 bg-support-whatsapp/10 text-support-whatsapp hover:bg-support-whatsapp/15",
+        }
+      : {
+          href: emailLink,
+          label: "Enviar por e-mail",
+          className: "border-brand-200 bg-brand-50 text-brand-700 hover:bg-brand-100",
+        };
 
   return (
     <div className="rounded-[1.75rem] border border-brand-100 bg-white p-6 shadow-card sm:p-8">
@@ -222,12 +246,12 @@ export function ContactForm({
             {isSubmitting ? "Enviando..." : buttonLabel}
           </button>
           <a
-            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-support-whatsapp/25 bg-support-whatsapp/10 px-6 py-3 text-sm font-semibold tracking-[0.04em] text-support-whatsapp transition hover:bg-support-whatsapp/15"
-            href={whatsappLink}
+            className={`inline-flex min-h-12 items-center justify-center rounded-xl border px-6 py-3 text-sm font-semibold tracking-[0.04em] transition ${secondaryButton.className}`}
+            href={secondaryButton.href}
             rel="noreferrer"
             target="_blank"
           >
-            Falar pelo WhatsApp
+            {secondaryButton.label}
           </a>
         </div>
         {feedback ? (

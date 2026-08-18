@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { contact } from "@/data/contact";
@@ -36,13 +36,33 @@ export function Header() {
 
             <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
               {navigationItems.map((item) => (
-                <Link
-                  className="text-sm text-brand-700/80 transition hover:text-brand-800"
-                  href={item.href}
-                  key={item.href}
-                >
-                  {item.label}
-                </Link>
+                <div className="group relative py-4" key={item.href}>
+                  <div className="flex items-center gap-1">
+                    <Link
+                      className="text-sm text-brand-700/80 transition hover:text-brand-800"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                    {item.children ? <ChevronDown className="h-4 w-4 text-brand-400" /> : null}
+                  </div>
+
+                  {item.children ? (
+                    <div className="pointer-events-none absolute left-0 top-full z-50 min-w-[280px] translate-y-2 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                      <div className="rounded-2xl border border-brand-100 bg-white p-3 shadow-soft">
+                        {item.children.map((child) => (
+                          <Link
+                            className="block rounded-xl px-4 py-3 text-sm text-brand-700 transition hover:bg-brand-50 hover:text-brand-800"
+                            href={child.href}
+                            key={child.href}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
               ))}
             </nav>
 

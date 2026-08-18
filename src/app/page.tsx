@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
 
 import { Button } from "@/components/Button";
 import { CTASection } from "@/components/CTASection";
 import { Container } from "@/components/Container";
 import { Hero } from "@/components/Hero";
+import { HomeLeadForm } from "@/components/HomeLeadForm";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -95,6 +96,7 @@ export default function HomePage() {
         description="Suporte imediato, humanizado e respeitoso para orientar sua família em momentos difíceis."
         hideSideImage
         imagePath="/images/funeraria-imagem-5.png"
+        sideContent={<HomeLeadForm />}
         title="Atendimento funerário 24 horas em todo o Brasil"
       />
 

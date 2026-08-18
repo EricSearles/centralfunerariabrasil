@@ -1,0 +1,14 @@
+
+> central-funeraria-brasil@1.0.0 dev
+> next dev --port 3000
+
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3000
+   - Network:      http://172.24.224.1:3000
+
+ ✓ Starting...
+ ✓ Ready in 3.7s
+ ○ Compiling / ...
+ ✓ Compiled / in 5.2s (728 modules)
+ HEAD / 200 in 6246ms
+ ✓ Compiled in 1320ms (281 modules)

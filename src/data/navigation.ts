@@ -1,6 +1,23 @@
-export const navigationItems = [
+﻿export type NavigationItem = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
+
+export const navigationItems: NavigationItem[] = [
   { label: "Início", href: "/" },
-  { label: "Serviços", href: "/servicos" },
+  {
+    label: "Serviços",
+    href: "/servicos",
+    children: [
+      { label: "Todos os serviços", href: "/servicos" },
+      { label: "Atendimento funerário 24h", href: "/servicos#atendimento-funerario-24h" },
+      { label: "Traslado funerário", href: "/traslado-funerario" },
+      { label: "Urnas funerárias", href: "/urnas-funerarias" },
+      { label: "Planos funerários", href: "/planos-funerarios" },
+      { label: "Velório online", href: "/velorio-online" },
+    ],
+  },
   { label: "Urnas", href: "/urnas-funerarias" },
   { label: "Traslado Funerário", href: "/traslado-funerario" },
   { label: "Planos Funerários", href: "/planos-funerarios" },

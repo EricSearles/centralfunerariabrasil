@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Clock3, Globe2, Mail, MessageCircle, PhoneCall } from "lucide-react";
+﻿import type { Metadata } from "next";
+import { Clock3, Globe2, Mail, MapPin, PhoneCall } from "lucide-react";
 
 import { CTASection } from "@/components/CTASection";
 import { ContactForm } from "@/components/ContactForm";
@@ -32,22 +32,23 @@ export default function ContatoPage() {
       <section className="py-24">
         <Container>
           <SectionTitle
-            description="Escolha o canal mais adequado ou envie as informações principais para que nossa equipe retorne com a orientação inicial."
+            description="Escolha o canal mais adequado ou envie as informações principais para que nossa equipe receba sua solicitação por e-mail e retorne com a orientação inicial."
             eyebrow="Fale com nossa equipe"
             title="Canais de atendimento"
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
             <InfoCard
               description={`Telefone e WhatsApp: ${contact.phone}`}
               icon={PhoneCall}
               title="Telefone"
             />
             <InfoCard
-              description="Atendimento direto pelo mesmo número."
-              icon={MessageCircle}
+              description="Atendimento direto pelo mesmo número informado no site."
+              icon={PhoneCall}
               title="WhatsApp"
             />
             <InfoCard description={contact.email} icon={Mail} title="E-mail" />
+            <InfoCard description={contact.address} icon={MapPin} title="Endereço" />
             <InfoCard description={contact.attendance} icon={Clock3} title="Atendimento" />
           </div>
         </Container>
@@ -56,7 +57,12 @@ export default function ContatoPage() {
       <section className="bg-white py-24">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <ContactForm />
+            <ContactForm
+              buttonLabel="Enviar por e-mail"
+              description="Preencha os dados essenciais para que nossa equipe receba sua mensagem em contato@centralfunerariabrasil.com.br e retorne com acolhimento e agilidade."
+              secondaryAction="email"
+              title="Enviar contato"
+            />
             <div className="space-y-6">
               <div className="rounded-[1.75rem] border border-brand-100 bg-brand-50/55 p-6">
                 <div className="flex items-start gap-3">
@@ -68,7 +74,8 @@ export default function ContatoPage() {
                       acordo com a necessidade informada, com suporte 24 horas.
                     </p>
                     <p className="mt-3 text-sm leading-7 text-text-muted">
-                      Atendimento sujeito à disponibilidade operacional e à logística da região. O encaminhamento é feito conforme a necessidade informada pela família.
+                      Atendimento sujeito à disponibilidade operacional e à logística da região. O
+                      encaminhamento é feito conforme a necessidade informada pela família.
                     </p>
                   </div>
                 </div>
@@ -80,6 +87,10 @@ export default function ContatoPage() {
                     <h3 className="font-display text-3xl text-brand-700">Contato direto</h3>
                     <p className="mt-3 text-sm leading-7 text-text-muted">
                       Telefone e WhatsApp: {contact.phone}
+                      <br />
+                      E-mail: {contact.email}
+                      <br />
+                      Endereço: {contact.address}
                       <br />
                       Site: centralfunerariabrasil.com.br
                     </p>
@@ -93,9 +104,10 @@ export default function ContatoPage() {
               />
               <div className="rounded-[1.75rem] border border-brand-100 bg-white p-6 shadow-card">
                 <div className="flex items-start gap-3">
-                  <MessageCircle className="mt-1 h-5 w-5 text-support-whatsapp" />
+                  <Mail className="mt-1 h-5 w-5 text-brand-400" />
                   <p className="text-sm leading-7 text-text-muted">
-                    Se preferir, você também pode falar com nossa equipe diretamente pelo WhatsApp para receber orientação imediata.
+                    Se preferir, você também pode enviar sua solicitação diretamente para
+                    contato@centralfunerariabrasil.com.br.
                   </p>
                 </div>
               </div>
@@ -105,7 +117,10 @@ export default function ContatoPage() {
       </section>
 
       <CTASection
-        description="Se preferir, fale diretamente com nossa equipe pelo WhatsApp e receba orientação imediata."
+        description="Se preferir, fale diretamente com nossa equipe pelo WhatsApp ou envie um e-mail para receber orientação inicial."
+        secondaryExternal
+        secondaryHref={`mailto:${contact.email}`}
+        secondaryLabel="Enviar e-mail"
         title="Precisa de atendimento funerário agora?"
       />
     </>
