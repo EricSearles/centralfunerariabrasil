@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import { contact } from "@/data/contact";
 import { footerQuickLinks, footerServiceLinks } from "@/data/navigation";
@@ -53,6 +53,7 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-white/75">
               <li>Telefone e WhatsApp: {contact.phone}</li>
               <li>E-mail: {contact.email}</li>
+              <li>Endereço: {contact.address}</li>
               <li>Atendimento: {contact.attendance}</li>
               <li>Site: centralfunerariabrasil.com.br</li>
             </ul>

@@ -1,4 +1,4 @@
-import { LucideIcon } from "lucide-react";
+﻿import { LucideIcon } from "lucide-react";
 
 type InfoCardProps = {
   icon: LucideIcon;
@@ -26,7 +26,9 @@ export function InfoCard({ icon: Icon, title, description, dark = false }: InfoC
         <Icon className="h-5 w-5" />
       </div>
       <h3 className="font-display text-[1.7rem] leading-tight">{title}</h3>
-      <p className={`mt-3 text-sm leading-7 ${descriptionColor}`}>{description}</p>
+      <p className={`mt-3 break-words text-sm leading-7 [overflow-wrap:anywhere] ${descriptionColor}`}>
+        {description}
+      </p>
     </div>
   );
 }

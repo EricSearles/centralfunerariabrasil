@@ -1,4 +1,4 @@
-import { PhoneCall } from "lucide-react";
+﻿import { Mail, PhoneCall } from "lucide-react";
 
 import { contact } from "@/data/contact";
 
@@ -11,6 +11,7 @@ type CTASectionProps = {
   description: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  secondaryExternal?: boolean;
 };
 
 export function CTASection({
@@ -18,6 +19,7 @@ export function CTASection({
   description,
   secondaryHref = "/contato",
   secondaryLabel = "Ir para contato",
+  secondaryExternal = false,
 }: CTASectionProps) {
   return (
     <section className="py-20">
@@ -35,13 +37,32 @@ export function CTASection({
                 <PhoneCall className="h-5 w-5 text-brand-400" />
                 <span>Telefone e WhatsApp: {contact.phone}</span>
               </div>
+              <div className="flex items-center gap-3 text-white/80">
+                <Mail className="h-5 w-5 text-brand-400" />
+                <span>{contact.email}</span>
+              </div>
               <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                 <Button external href={contact.whatsappUrlWithMessage} variant="whatsapp">
                   Falar no WhatsApp 24h
                 </Button>
-                <Button className="border-white/20 bg-white/10 text-white hover:bg-white/15" href={secondaryHref} variant="ghost">
-                  {secondaryLabel}
-                </Button>
+                {secondaryExternal ? (
+                  <Button
+                    className="border-white/20 bg-white/10 text-white hover:bg-white/15"
+                    external
+                    href={secondaryHref}
+                    variant="ghost"
+                  >
+                    {secondaryLabel}
+                  </Button>
+                ) : (
+                  <Button
+                    className="border-white/20 bg-white/10 text-white hover:bg-white/15"
+                    href={secondaryHref}
+                    variant="ghost"
+                  >
+                    {secondaryLabel}
+                  </Button>
+                )}
               </div>
             </div>
           </div>

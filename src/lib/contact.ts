@@ -1,10 +1,6 @@
 ﻿import { contact } from "@/data/contact";
 
-export function createWhatsAppLink(message: string): string {
-  return `https://wa.me/${contact.phoneRaw}?text=${encodeURIComponent(message)}`;
-}
-
-export function createLeadMessage(input: {
+type ContactMessageInput = {
   name: string;
   whatsapp: string;
   email?: string;
@@ -12,9 +8,11 @@ export function createLeadMessage(input: {
   state?: string;
   serviceType: string;
   notes?: string;
-}): string {
+};
+
+export function createContactEmailBody(input: ContactMessageInput): string {
   return [
-    "Olá, preciso de atendimento funerário pela Central Funerária Brasil.",
+    "Olá, gostaria de solicitar contato/cotação pela Central Funerária Brasil.",
     "",
     `Nome: ${input.name}`,
     `WhatsApp: ${input.whatsapp}`,
@@ -24,4 +22,8 @@ export function createLeadMessage(input: {
     `Tipo de atendimento: ${input.serviceType}`,
     `Observações: ${input.notes || "-"}`,
   ].join("\n");
+}
+
+export function createContactMailtoLink(subject: string, body: string): string {
+  return `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
