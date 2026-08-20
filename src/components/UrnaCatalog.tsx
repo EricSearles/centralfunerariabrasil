@@ -81,7 +81,7 @@ export function UrnaCatalog({ items }: UrnaCatalogProps) {
       <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filteredItems.map((item, index) => {
           const whatsappLink = createWhatsAppLink(
-            `Olá, gostaria de consultar disponibilidade da urna ${item.name} - ${item.reference}.`,
+            `${contact.whatsappDefaultMessage}\n\nGostaria de consultar disponibilidade da urna ${item.name} - ${item.reference}.`,
           );
 
           return (
@@ -212,7 +212,7 @@ export function UrnaCatalog({ items }: UrnaCatalogProps) {
                     className="sm:flex-1"
                     external
                     href={createWhatsAppLink(
-                      `Olá, gostaria de consultar disponibilidade da urna ${selectedUrna.name} - ${selectedUrna.reference}.`,
+                      `${contact.whatsappDefaultMessage}\n\nGostaria de consultar disponibilidade da urna ${selectedUrna.name} - ${selectedUrna.reference}.`,
                     )}
                     variant="whatsapp"
                   >
