@@ -1,4 +1,7 @@
-﻿export const contact = {
+const whatsappDefaultMessage =
+  "Olá, vim pelo Google e gostaria de uma cotação com a Central Funerária, é possível?";
+
+export const contact = {
   companyName: "Central Funerária Brasil",
   siteUrl: "https://centralfunerariabrasil.com.br",
   phone: "(11) 4172-0100",
@@ -8,10 +11,8 @@
   mobilePhone: "(11) 4172-0100",
   mobilePhoneRaw: "551141720100",
   whatsappUrl: "https://wa.me/551141720100",
-  whatsappUrlWithMessage:
-    "https://wa.me/551141720100?text=Olá%2C%20preciso%20de%20atendimento%20funerário.%20Gostaria%20de%20falar%20com%20a%20Central%20Funerária%20Brasil.",
-  whatsappDefaultMessage:
-    "Olá, preciso de atendimento funerário. Gostaria de falar com a Central Funerária Brasil.",
+  whatsappUrlWithMessage: `https://wa.me/551141720100?text=${encodeURIComponent(whatsappDefaultMessage)}`,
+  whatsappDefaultMessage,
   email: "contato@centralfunerariabrasil.com.br",
   address: "Av. Olavo Fontoura, 484 - Santana - SP - CEP 02012-020",
   streetAddress: "Av. Olavo Fontoura, 484",

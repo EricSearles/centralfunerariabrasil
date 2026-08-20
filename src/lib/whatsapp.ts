@@ -1,4 +1,4 @@
-﻿import { contact } from "@/data/contact";
+import { contact } from "@/data/contact";
 
 export function createWhatsAppLink(message: string): string {
   return `https://wa.me/${contact.phoneRaw}?text=${encodeURIComponent(message)}`;
@@ -14,7 +14,7 @@ export function createLeadMessage(input: {
   notes?: string;
 }): string {
   return [
-    "Olá, preciso de atendimento funerário pela Central Funerária Brasil.",
+    contact.whatsappDefaultMessage,
     "",
     `Nome: ${input.name}`,
     `WhatsApp: ${input.whatsapp}`,
